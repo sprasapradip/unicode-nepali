@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Text Conversion Tools</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://pradipsubedi1.com.np/assets/js/jquery-3.7.1.js"></script>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .mode_selector {
+            margin-bottom: 20px;
+        }
+        .my-tools {
+            margin-top: 20px;
+        }
+        .textarea_unicode {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+        .copy-button, .clear-button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nepali Text Conversion Tools</h1>
+
+    <!-- Mode Selector -->
+    <div class="mode_selector">
+        <label for="mode">Choose Conversion Mode:</label>
+        <select id="mode" onchange="changeMode()">
+            <option value="roman_to_unicode">Romanized to Nepali Unicode</option>
+            <option value="unicode_to_preeti">Nepali Unicode to Preeti</option>
+            <option value="preeti_to_unicode">Preeti to Nepali Unicode</option>
+        </select>
+    </div>
+
+    <!-- Tool Display -->
+    <div id="iframe-1"></div>
+
+    <!-- Scripts for Conversion Tools -->
+    <script>
+        function changeMode() {
+            const mode = document.getElementById("mode").value;
+            const container = document.getElementById("iframe-1");
+
+            // Clear the container for new content
+            container.innerHTML = '';
+
+            let scriptSrc = '';
+            let htmlContent = '';
+
+            if (mode === 'roman_to_unicode') {
+                scriptSrc = 'https://pradipsubedi1.com.np/assets/embed/roman/script.js';
+                htmlContent = `
+                    <div class="my-tools">
+                        <form name="nepali">
+                            <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="nepconv();" placeholder="Romanized text here"></textarea>
+                        </form>
+                        <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText"></textarea>
+                        <button class="copy-button" onclick="copyText(event)" type="button">Copy</button>
+                        <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                    </div>
+                `;
+            } else if (mode === 'unicode_to_preeti') {
+                scriptSrc = 'https://pradipsubedi1.com.np/assets/embed/unicode/script.js';
+                htmlContent = `
+                    <div class="my-tools">
+                        <form name="nepali">
+                            <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="convert_to_Preeti();" placeholder="Unicode text here"></textarea>
+                        </form>
+                        <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText"></textarea>
+                        <button class="copy-button" onclick="copyText(event)" type="button">Copy</button>
+                        <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                    </div>
+                `;
+            } else if (mode === 'preeti_to_unicode') {
+                scriptSrc = 'https://pradipsubedi1.com.np/assets/embed/preeti/script.js';
+                htmlContent = `
+                    <div class="my-tools">
+                        <form name="nepali">
+                            <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="convert_to_Unicode();" placeholder="Preeti text here"></textarea>
+                        </form>
+                        <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText"></textarea>
+                        <button class="copy-button" onclick="copyText(event)" type="button">Copy</button>
+                        <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                    </div>
+                `;
+            }
+
+            if (scriptSrc) {
+                // Create and append script element
+                const scriptElement = document.createElement('script');
+                scriptElement.src = scriptSrc;
+                document.body.appendChild(scriptElement);
+            }
+
+            // Insert HTML content
+            container.innerHTML = htmlContent;
+        }
+
+        function copyText(event) {
+            // Implement your copy functionality here
+        }
+
+        function clearContent() {
+            document.getElementById('unicode_text_two').value = '';
+            document.getElementById('legacy_text_two').value = '';
+        }
+
+        // Default tool on load
+        document.addEventListener("DOMContentLoaded", function () {
+            changeMode(); // Load the default option
+        });
+    </script>
+
+    <!-- Optional: Embed Typing Script -->
+    <script src="https://pradipsubedi1.com.np/assets/embed/typing/script.js"></script>
+  </div>
+
+  <!-- Optional Footer -->
+  <footer>
+      <p>For installation help, contact:</p>
+      <p>Phone: +977 9843944252</p>
+      <p>Email: pradipsubedi@example.com</p>
+  </footer>
+</body>
+</html>

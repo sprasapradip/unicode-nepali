@@ -6,6 +6,13 @@ This repository provides a set of tools for Nepali text conversion and utilities
 - Preeti to Unicode
 - Unicode to Preeti
 - jQuery and Typing Script Integration
+
+## Live Demo
+
+You can check out the live demo of these tools using the following link:
+
+[Live Demo of Nepali Text Conversion Tools](https://pradipsubedi1.com.np/demo/unicode-nepali)
+
 ## Embedding Instructions
 
 To integrate these tools into your web page, you can use the provided HTML snippets. Simply copy and paste the relevant code into your HTML file.
