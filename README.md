@@ -28,3 +28,13 @@ To include the Preeti to Unicode conversion tool:
 <div id="iframe-1"></div>
 <script src="https://pradipsubedi1.com.np/assets/embed/preeti/script.js"></script>
 ```
+
+
+
+### Unicode to Preeti
+Use the following snippet to add the Unicode to Preeti conversion tool:
+
+```html
+<div id="iframe-1"></div>
+<script src="https://pradipsubedi1.com.np/assets/embed/unicode/script.js"></script>
+```
