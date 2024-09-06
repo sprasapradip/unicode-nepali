@@ -48,3 +48,11 @@ Use the following snippet to add the Unicode to Preeti conversion tool:
 
 ## Screenshots
 
+### Nepali Unicode Tool
+![Nepali Unicode Tool](./screenshots/nepali-unicode.png)
+
+### Preeti to Unicode Tool
+![Preeti to Unicode Tool](./screenshots/preeti-to-unicode.png)
+
+### Unicode to Preeti Tool
+![Unicode to Preeti Tool](./screenshots/unicode-to-preeti.png)
