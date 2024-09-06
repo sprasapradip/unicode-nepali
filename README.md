@@ -40,6 +40,11 @@ Use the following snippet to add the Unicode to Preeti conversion tool:
 ```
 
 ## Usage
-Copy the HTML Snippet: Choose the appropriate snippet based on the tool you want to embed.
-Paste into Your HTML: Place the snippet into your HTML file where you want the tool to appear.
-Customize as Needed: You can style the container div with id="iframe-1" using CSS to fit your webpage design.
+
+- Copy the HTML Snippet: Choose the appropriate snippet based on the tool you want to embed.
+- Paste into Your HTML: Place the snippet into your HTML file where you want the tool to appear.
+- Customize as Needed: You can style the container div with id="iframe-1" using CSS to fit your webpage design.
+
+
+## Screenshots
+
