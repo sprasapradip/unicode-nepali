@@ -7,50 +7,103 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Nepali Unicode Converter</h1>
-    <!-- Mode Selector -->
-    <div class="mode_selector">
-        <label for="mode">Choose Conversion Mode:</label>
-        <select id="mode" onchange="changeMode()">
-            <option value="roman_to_unicode">Romanized to Nepali Unicode</option>
-            <option value="unicode_to_preeti">Nepali Unicode to Preeti</option>
-            <option value="preeti_to_unicode">Preeti to Nepali Unicode</option>
-        </select>
-    </div>
+    <div class="container">
+        <h1>Nepali Unicode Converter</h1>
+        
+        <!-- Mode Selector -->
+        <div class="mode_selector">
+            <label for="mode">Choose Conversion Mode:</label>
+            <select id="mode" onchange="changeMode()">
+                <option value="roman_to_unicode">Romanized to Nepali Unicode</option>
+                <option value="unicode_to_preeti">Nepali Unicode to Preeti</option>
+                <option value="preeti_to_unicode">Preeti to Nepali Unicode</option>
+            </select>
+        </div>
 
-    <div id="iframe-1"></div>
+        <!-- Content Area -->
+        <div id="iframe-1"></div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var contentContainer = document.getElementById("iframe-1");
-            var htmlContent = `
-                <div class="my-tools">
-                    <form name="nepali">
-                        <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="nepconv(); javascript:convert_to_Preeti();" placeholder="युनिकोड टाइप or पेस्ट गर्नुहोस्"></textarea>
-                    </form>
-                    <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText"></textarea>
-                    <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
-                    <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
-                </div>
-            `;
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                changeMode(); // Initialize the default mode
+            });
 
-            var tempContainer = document.createElement("div");
-            tempContainer.innerHTML = htmlContent;
+            // Function to change conversion mode
+            function changeMode() {
+                var mode = document.getElementById("mode").value;
+                var contentContainer = document.getElementById("iframe-1");
+                contentContainer.innerHTML = ""; // Clear previous content
 
-            while (tempContainer.firstChild) {
-                contentContainer.appendChild(tempContainer.firstChild);
+                var htmlContent = '';
+
+                if (mode === "roman_to_unicode") {
+                    htmlContent = `
+                        <div class="my-tools">
+                            <form name="nepali">
+                                <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="nepconv();" placeholder="Type or paste Romanized text"></textarea>
+                            </form>
+                            <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText" placeholder="Converted Nepali Unicode text"></textarea>
+                            <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
+                            <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                        </div>
+                    `;
+                    loadScript('https://pradipsubedi1.com.np/assets/js/roman.js'); // Example script for Romanized to Unicode
+                } else if (mode === "unicode_to_preeti") {
+                    htmlContent = `
+                        <div class="my-tools">
+                            <form name="nepali">
+                                <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="convert_to_Preeti();" placeholder="Type or paste Nepali Unicode text"></textarea>
+                            </form>
+                            <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText" placeholder="Converted Preeti text"></textarea>
+                            <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
+                            <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                        </div>
+                    `;
+                    loadScript('https://pradipsubedi1.com.np/assets/js/unicode.js'); // Example script for Unicode to Preeti
+                } else if (mode === "preeti_to_unicode") {
+                    htmlContent = `
+                        <div class="my-tools">
+                            <form name="nepali">
+                                <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="convert_to_Unicode();" placeholder="Type or paste Preeti text"></textarea>
+                            </form>
+                            <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText" placeholder="Converted Nepali Unicode text"></textarea>
+                            <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
+                            <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                        </div>
+                    `;
+                    loadScript('https://pradipsubedi1.com.np/assets/js/preeti.js'); // Example script for Preeti to Unicode
+                }
+
+                // Append new content to iframe-1
+                var tempContainer = document.createElement("div");
+                tempContainer.innerHTML = htmlContent;
+
+                while (tempContainer.firstChild) {
+                    contentContainer.appendChild(tempContainer.firstChild);
+                }
             }
-        });
 
-        // Load external scripts
-        var scriptElement1 = document.createElement('script');
-        scriptElement1.src = 'https://pradipsubedi1.com.np/assets/js/unicode.js';
-        document.head.appendChild(scriptElement1);
+            // Function to load external script dynamically
+            function loadScript(url) {
+                var scriptElement = document.createElement('script');
+                scriptElement.src = url;
+                document.head.appendChild(scriptElement);
+            }
 
-        var scriptElement2 = document.createElement('script');
-        scriptElement2.src = 'https://pradipsubedi1.com.np/assets/js/ntying.js';
-        document.head.appendChild(scriptElement2);
-    </script>
+            // Function to copy text from the output box
+            function copyPreeti(event) {
+                var copyText = document.getElementById("legacy_text_two");
+                copyText.select();
+                document.execCommand("copy");
+                alert("Copied to clipboard!");
+            }
+
+            // Function to clear content
+            function clearContent() {
+                document.getElementById("unicode_text_two").value = '';
+                document.getElementById("legacy_text_two").value = '';
+            }
+        </script>
+    </div>
 </body>
 </html>
