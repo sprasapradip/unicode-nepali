@@ -1,4 +1,3 @@
-# unicode-nepali
 # Nepali Text Conversion Tools
 
 This repository provides a set of tools for Nepali text conversion and utilities, which can be easily embedded into any web page. These tools include:
@@ -28,9 +27,6 @@ To include the Preeti to Unicode conversion tool:
 <div id="iframe-1"></div>
 <script src="https://pradipsubedi1.com.np/assets/embed/preeti/script.js"></script>
 ```
-
-
-
 ### Unicode to Preeti
 Use the following snippet to add the Unicode to Preeti conversion tool:
 
@@ -38,13 +34,11 @@ Use the following snippet to add the Unicode to Preeti conversion tool:
 <div id="iframe-1"></div>
 <script src="https://pradipsubedi1.com.np/assets/embed/unicode/script.js"></script>
 ```
-
 ## Usage
 
 - Copy the HTML Snippet: Choose the appropriate snippet based on the tool you want to embed.
 - Paste into Your HTML: Place the snippet into your HTML file where you want the tool to appear.
 - Customize as Needed: You can style the container div with id="iframe-1" using CSS to fit your webpage design.
-
 
 ## Screenshots
 
@@ -56,3 +50,10 @@ Use the following snippet to add the Unicode to Preeti conversion tool:
 
 ## Unicode to Preeti Tool
 ![Unicode to Preeti Tool](./screenshots/unicode-to-preeti.png)
+
+## Installation Help
+
+If you need help with installation or have any questions, feel free to contact me:
+
+- **Phone**: +977 9843944252
+- **Email**: info@pradipsubedi1.com.np
