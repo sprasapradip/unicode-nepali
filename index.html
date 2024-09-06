@@ -9,7 +9,6 @@
 <body>
   <div class="container">
     <h1>Nepali Unicode Converter</h1>
-
     <!-- Mode Selector -->
     <div class="mode_selector">
         <label for="mode">Choose Conversion Mode:</label>
@@ -19,5 +18,39 @@
             <option value="preeti_to_unicode">Preeti to Nepali Unicode</option>
         </select>
     </div>
+
+    <div id="iframe-1"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var contentContainer = document.getElementById("iframe-1");
+            var htmlContent = `
+                <div class="my-tools">
+                    <form name="nepali">
+                        <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="nepconv(); javascript:convert_to_Preeti();" placeholder="युनिकोड टाइप or पेस्ट गर्नुहोस्"></textarea>
+                    </form>
+                    <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText"></textarea>
+                    <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
+                    <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
+                </div>
+            `;
+
+            var tempContainer = document.createElement("div");
+            tempContainer.innerHTML = htmlContent;
+
+            while (tempContainer.firstChild) {
+                contentContainer.appendChild(tempContainer.firstChild);
+            }
+        });
+
+        // Load external scripts
+        var scriptElement1 = document.createElement('script');
+        scriptElement1.src = 'https://pradipsubedi1.com.np/assets/js/unicode.js';
+        document.head.appendChild(scriptElement1);
+
+        var scriptElement2 = document.createElement('script');
+        scriptElement2.src = 'https://pradipsubedi1.com.np/assets/js/ntying.js';
+        document.head.appendChild(scriptElement2);
+    </script>
 </body>
 </html>
