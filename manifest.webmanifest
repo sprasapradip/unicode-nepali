@@ -1,0 +1,12 @@
+{
+  "name": "Nepali Unicode Converter",
+  "short_name": "Nepali Unicode",
+  "description": "Preeti ↔ Unicode, Romanized Nepali typing, URL slugs and Nepali number formatting. Works offline.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#b91c1c",
+  "icons": [{ "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

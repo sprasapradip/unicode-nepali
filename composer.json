@@ -1,0 +1,13 @@
+{
+    "name": "sprasapradip/unicode-nepali",
+    "description": "Nepali text converter for PHP: Preeti <-> Unicode, Romanized -> Unicode, Unicode -> Roman/slug, Nepali digits and lakh/crore formatting.",
+    "type": "library",
+    "keywords": ["nepali", "preeti", "unicode", "devanagari", "laravel", "wordpress", "slug"],
+    "homepage": "https://github.com/sprasapradip/unicode-nepali",
+    "license": "proprietary",
+    "authors": [{ "name": "Pradip Subedi", "homepage": "https://github.com/sprasapradip" }],
+    "require": { "php": ">=8.1", "ext-mbstring": "*" },
+    "suggest": { "ext-intl": "Unicode normalisation of input text" },
+    "autoload": { "psr-4": { "Sprasa\\NepaliUnicode\\": "php/src/" } },
+    "scripts": { "test": "php tests/php/run.php" }
+}

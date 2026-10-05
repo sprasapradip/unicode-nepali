@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embed demo: nepali-converter</title>
+<meta name="description" content="Demo page showing the nepali-converter web component embedded with two script tags.">
+<style>
+:root{--color-bg:#ffffff;--color-surface:#f8fafc;--color-text:#0f172a;--color-text-muted:#475569;--color-primary:#b91c1c;--color-on-primary:#ffffff;--color-focus:#1d4ed8}
+body{margin:0;background:var(--color-bg);color:var(--color-text);font:1rem/1.6 system-ui,sans-serif}
+main{width:min(60rem,100% - 2rem);margin:2rem auto}
+:focus-visible{outline:3px solid var(--color-focus)}
+@media (max-width:40rem){main{margin:1rem auto}}
+h1{font-size:clamp(1.4rem,1.2rem + 1vw,2rem)}
+</style>
+</head>
+<body>
+<main id="main">
+  <h1>Embedded converter</h1>
+  <p>Two script tags and one element. Try the Nepali interface and a restricted set of modes below.</p>
+  <nepali-converter mode="preeti-to-unicode"></nepali-converter>
+  <h2>Nepali labels, Unicode ↔ Preeti only</h2>
+  <nepali-converter lang-ui="ne" modes="preeti-to-unicode,unicode-to-preeti"></nepali-converter>
+</main>
+<script src="../src/nepali-converter.js"></script>
+<script src="nepali-converter-element.js"></script>
+</body>
+</html>

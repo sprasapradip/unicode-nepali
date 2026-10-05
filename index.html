@@ -1,109 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="auto">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nepali Unicode Converter</title>
-    <link rel="stylesheet" href="./css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nepali Unicode Converter: Preeti, Romanized, Unicode</title>
+<meta name="description" content="Free Nepali Unicode converter: Preeti to Unicode, Unicode to Preeti, Romanized typing, URL slugs and lakh/crore number formatting. Works offline, nothing leaves your browser.">
+<meta name="theme-color" content="#0f172a">
+<link rel="canonical" href="https://sprasapradip.github.io/unicode-nepali/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Nepali Unicode Converter">
+<meta property="og:description" content="Preeti ↔ Unicode, Romanized Nepali typing, slugs and Nepali number formatting. Offline and private.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sprasapradip.github.io/unicode-nepali/">
+<meta property="og:image" content="https://sprasapradip.github.io/unicode-nepali/screenshots/app-light.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Nepali Unicode Converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":["ne","en"],"offers":{"@type":"Offer","price":"0","priceCurrency":"NPR"},"author":{"@type":"Person","name":"Pradip Subedi","url":"https://github.com/sprasapradip"}}</script>
+<script>try{var t=localStorage.getItem('nuc-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<style>
+:root{
+  --color-bg:#f8fafc;--color-surface:#ffffff;--color-border:#cbd5e1;--color-text:#0f172a;--color-text-muted:#475569;
+  --color-primary:#b91c1c;--color-on-primary:#ffffff;--color-focus:#1d4ed8;--color-accent-soft:#fee2e2;
+  --radius:0.75rem;--shadow:0 1px 2px rgb(15 23 42/.06),0 8px 24px rgb(15 23 42/.08);
+  --fs-sm:clamp(0.85rem,0.82rem + 0.15vw,0.95rem);--fs-base:clamp(1rem,0.96rem + 0.2vw,1.1rem);
+  --fs-h1:clamp(1.6rem,1.2rem + 2vw,2.4rem);--fs-ne:clamp(1.1rem,1rem + 0.4vw,1.3rem);
+  --font-ne:"Noto Sans Devanagari","Kalimati","Mangal","Nirmala UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --color-bg:#0b1120;--color-surface:#111827;--color-border:#334155;--color-text:#e2e8f0;--color-text-muted:#94a3b8;
+  --color-primary:#f87171;--color-on-primary:#0b1120;--color-focus:#93c5fd;--color-accent-soft:#3f1d1d;color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --color-bg:#0b1120;--color-surface:#111827;--color-border:#334155;--color-text:#e2e8f0;--color-text-muted:#94a3b8;
+  --color-primary:#f87171;--color-on-primary:#0b1120;--color-focus:#93c5fd;--color-accent-soft:#3f1d1d;color-scheme:dark;}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--color-bg);color:var(--color-text);font:var(--fs-base)/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--color-primary)}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--color-surface);padding:.5rem 1rem}
+.skip:focus{left:1rem}
+.wrap{width:min(72rem,100% - 2rem);margin-inline:auto}
+header.site{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.25rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;text-decoration:none;color:var(--color-text)}
+.brand-mark{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:.6rem;background:var(--color-primary);color:var(--color-on-primary);font-family:var(--font-ne);font-size:1.2rem}
+h1{font-size:var(--fs-h1);line-height:1.2;margin:.5rem 0 .25rem;text-wrap:balance}
+.lead{color:var(--color-text-muted);margin:0 0 1.5rem;max-width:65ch}
+.btn{display:inline-flex;align-items:center;gap:.4rem;min-height:2.75rem;padding:.5rem 1rem;border-radius:.6rem;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font:inherit;font-size:var(--fs-sm);cursor:pointer}
+.btn:hover{border-color:var(--color-primary)}
+.btn-primary{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tab{min-height:2.75rem;padding:.5rem .9rem;border-radius:999px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font:inherit;font-size:var(--fs-sm);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
+.panes{display:grid;gap:1rem}
+@media (min-width:48rem){.panes{grid-template-columns:1fr auto 1fr;align-items:start}}
+.pane{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
+.pane label{display:block;font-weight:600;margin-bottom:.4rem}
+.pane .actions label{display:inline-flex;font-weight:400;margin:0}
+textarea{width:100%;min-height:14rem;resize:vertical;padding:.75rem;border-radius:.6rem;border:1px solid var(--color-border);background:var(--color-bg);color:var(--color-text);font:inherit;font-size:var(--fs-ne);line-height:1.7}
+textarea.ne{font-family:var(--font-ne)}
+.meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;margin-top:.5rem;color:var(--color-text-muted);font-size:var(--fs-sm)}
+.actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+.swap{align-self:center;justify-self:center}
+.notice{display:none;align-items:center;gap:.75rem;flex-wrap:wrap;margin:0 0 1rem;padding:.75rem 1rem;border-radius:.6rem;background:var(--color-accent-soft);color:var(--color-text)}
+.notice.show{display:flex}
+.options{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin:1rem 0;color:var(--color-text)}
+.options label{display:inline-flex;align-items:center;gap:.5rem;min-height:2.75rem;cursor:pointer}
+.options input,.numrow input[type="checkbox"]{width:1.15rem;height:1.15rem;accent-color:var(--color-primary)}
+section.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);padding:1rem 1.25rem;margin-top:1.5rem}
+section.card h2{font-size:1.15rem;margin:.25rem 0 .75rem}
+.grid2{display:grid;gap:1.5rem}
+@media (min-width:48rem){.grid2{grid-template-columns:1fr 1fr}}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm)}
+th,td{text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--color-border)}
+td.ne,.ne{font-family:var(--font-ne)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--color-bg);padding:.05rem .3rem;border-radius:.3rem}
+.history{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.history button{width:100%;text-align:left;min-height:2.75rem;padding:.5rem .75rem;border-radius:.5rem;border:1px solid var(--color-border);background:var(--color-bg);color:var(--color-text);font:inherit;font-size:var(--fs-sm);cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.history .empty{color:var(--color-text-muted)}
+.numrow{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.numrow input[type="text"]{flex:1 1 12rem;min-height:2.75rem;padding:.5rem .75rem;border-radius:.6rem;border:1px solid var(--color-border);background:var(--color-bg);color:var(--color-text);font:inherit}
+.numrow label{display:inline-flex;align-items:center;gap:.5rem;min-height:2.75rem}
+output.big{display:block;margin-top:.75rem;font-family:var(--font-ne);font-size:1.4rem}
+footer.site{margin-top:2.5rem;padding-block:1.5rem;border-top:1px solid var(--color-border);color:var(--color-text-muted);font-size:var(--fs-sm)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){.btn,.tab{transition:background-color .15s,border-color .15s}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Nepali Unicode Converter</h1>
-        
-        <!-- Mode Selector -->
-        <div class="mode_selector">
-            <label for="mode">Choose Conversion Mode:</label>
-            <select id="mode" onchange="changeMode()">
-                <option value="roman_to_unicode">Romanized to Nepali Unicode</option>
-                <option value="unicode_to_preeti">Nepali Unicode to Preeti</option>
-                <option value="preeti_to_unicode">Preeti to Nepali Unicode</option>
-            </select>
+<a class="skip" href="#main">Skip to converter</a>
+<header class="site wrap">
+  <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">अ</span>Nepali Unicode Converter</a>
+  <nav aria-label="Primary">
+    <button type="button" class="btn" id="theme-toggle" aria-label="Switch to dark theme">Theme</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+  <h1>Convert Nepali text between Preeti, Romanized and Unicode</h1>
+  <p class="lead">Everything runs in your browser. Your text is never uploaded, and the app keeps working offline after the first visit.</p>
+
+  <div class="tabs" role="tablist" aria-label="Conversion mode">
+    <button type="button" class="tab" role="tab" id="tab-roman-to-unicode" data-mode="roman-to-unicode" aria-selected="true" aria-controls="converter">Romanized → Unicode</button>
+    <button type="button" class="tab" role="tab" id="tab-preeti-to-unicode" data-mode="preeti-to-unicode" aria-selected="false" aria-controls="converter">Preeti → Unicode</button>
+    <button type="button" class="tab" role="tab" id="tab-unicode-to-preeti" data-mode="unicode-to-preeti" aria-selected="false" aria-controls="converter">Unicode → Preeti</button>
+    <button type="button" class="tab" role="tab" id="tab-unicode-to-roman" data-mode="unicode-to-roman" aria-selected="false" aria-controls="converter">Unicode → Roman</button>
+    <button type="button" class="tab" role="tab" id="tab-slug" data-mode="slug" aria-selected="false" aria-controls="converter">URL slug</button>
+  </div>
+
+  <div class="notice" id="detect-notice">
+    <span id="detect-text"></span>
+    <button type="button" class="btn btn-primary" id="detect-switch">Switch mode</button>
+  </div>
+
+  <div id="converter" role="tabpanel" aria-labelledby="tab-roman-to-unicode">
+    <div class="panes">
+      <div class="pane">
+        <label for="input" id="input-label">Romanized text</label>
+        <textarea id="input" spellcheck="false" autocomplete="off" placeholder="mero naam pradiip ho"></textarea>
+        <div class="meta"><span id="input-stats">0 characters · 0 words</span></div>
+        <div class="actions">
+          <label class="btn" for="file">Open .txt file</label>
+          <input class="sr-only" type="file" id="file" accept=".txt,.md,.csv,text/plain">
+          <button type="button" class="btn" id="clear">Clear</button>
         </div>
-
-        <!-- Content Area -->
-        <div id="iframe-1"></div>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                changeMode(); // Initialize the default mode
-            });
-
-            // Function to change conversion mode
-            function changeMode() {
-                var mode = document.getElementById("mode").value;
-                var contentContainer = document.getElementById("iframe-1");
-                contentContainer.innerHTML = ""; // Clear previous content
-
-                var htmlContent = '';
-
-                if (mode === "roman_to_unicode") {
-                    htmlContent = `
-                        <div class="my-tools">
-                            <form name="nepali">
-                                <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="nepconv();" placeholder="Type or paste Romanized text"></textarea>
-                            </form>
-                            <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText" placeholder="Converted Nepali Unicode text"></textarea>
-                            <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
-                            <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
-                        </div>
-                    `;
-                    loadScript('https://pradipsubedi1.com.np/assets/js/roman.js'); // Example script for Romanized to Unicode
-                } else if (mode === "unicode_to_preeti") {
-                    htmlContent = `
-                        <div class="my-tools">
-                            <form name="nepali">
-                                <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="convert_to_Preeti();" placeholder="Type or paste Nepali Unicode text"></textarea>
-                            </form>
-                            <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText" placeholder="Converted Preeti text"></textarea>
-                            <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
-                            <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
-                        </div>
-                    `;
-                    loadScript('https://pradipsubedi1.com.np/assets/js/unicode.js'); // Example script for Unicode to Preeti
-                } else if (mode === "preeti_to_unicode") {
-                    htmlContent = `
-                        <div class="my-tools">
-                            <form name="nepali">
-                                <textarea class="textarea_unicode" id="unicode_text_two" name="unicodebox" onkeyup="convert_to_Unicode();" placeholder="Type or paste Preeti text"></textarea>
-                            </form>
-                            <textarea id="legacy_text_two" class="textarea_unicode" name="ConvertedText" placeholder="Converted Nepali Unicode text"></textarea>
-                            <button class="copy-button" onclick="copyPreeti(event)" type="button">Copy</button>
-                            <input class="clear-button" type="button" value="Clear" onclick="clearContent()">
-                        </div>
-                    `;
-                    loadScript('https://pradipsubedi1.com.np/assets/js/preeti.js'); // Example script for Preeti to Unicode
-                }
-
-                // Append new content to iframe-1
-                var tempContainer = document.createElement("div");
-                tempContainer.innerHTML = htmlContent;
-
-                while (tempContainer.firstChild) {
-                    contentContainer.appendChild(tempContainer.firstChild);
-                }
-            }
-
-            // Function to load external script dynamically
-            function loadScript(url) {
-                var scriptElement = document.createElement('script');
-                scriptElement.src = url;
-                document.head.appendChild(scriptElement);
-            }
-
-            // Function to copy text from the output box
-            function copyPreeti(event) {
-                var copyText = document.getElementById("legacy_text_two");
-                copyText.select();
-                document.execCommand("copy");
-                alert("Copied to clipboard!");
-            }
-
-            // Function to clear content
-            function clearContent() {
-                document.getElementById("unicode_text_two").value = '';
-                document.getElementById("legacy_text_two").value = '';
-            }
-        </script>
+      </div>
+      <button type="button" class="btn swap" id="swap" aria-label="Swap direction">⇄ Swap</button>
+      <div class="pane">
+        <label for="output" id="output-label">Nepali Unicode</label>
+        <textarea id="output" class="ne" readonly placeholder="मेरो नाम प्रदीप हो"></textarea>
+        <div class="meta"><span id="output-stats">0 characters · 0 words</span></div>
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="copy">Copy <span aria-hidden="true">(Ctrl+Enter)</span></button>
+          <button type="button" class="btn" id="download">Download .txt</button>
+        </div>
+      </div>
     </div>
+
+    <div class="options">
+      <label><input type="checkbox" id="opt-inplace"> Type directly in Nepali (converts each word on space)</label>
+      <label><input type="checkbox" id="opt-digits" checked> Use Nepali digits (०-९)</label>
+      <label><input type="checkbox" id="opt-history" checked> Keep recent conversions on this device</label>
+    </div>
+  </div>
+
+  <p class="sr-only" id="status" role="status" aria-live="polite"></p>
+
+  <div class="grid2">
+    <section class="card" aria-labelledby="history-title">
+      <h2 id="history-title">Recent conversions</h2>
+      <ul class="history" id="history"></ul>
+      <div class="actions"><button type="button" class="btn" id="history-clear">Clear history</button></div>
+    </section>
+
+    <section class="card" aria-labelledby="number-title">
+      <h2 id="number-title">Nepali number formatter</h2>
+      <div class="numrow">
+        <label class="sr-only" for="num-input">Number to format</label>
+        <input type="text" id="num-input" inputmode="decimal" placeholder="1234567.50">
+        <label><input type="checkbox" id="num-english"> English digits</label>
+      </div>
+      <output class="big" id="num-output" for="num-input">१२,३४,५६७.५०</output>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="guide-title">
+    <h2 id="guide-title">Romanized typing guide</h2>
+    <div class="grid2">
+      <table>
+        <caption class="sr-only">Vowels</caption>
+        <thead><tr><th scope="col">Type</th><th scope="col">Gets</th><th scope="col">Type</th><th scope="col">Gets</th></tr></thead>
+        <tbody>
+          <tr><td><code>a</code></td><td class="ne">अ</td><td><code>aa</code> / <code>A</code></td><td class="ne">आ ा</td></tr>
+          <tr><td><code>i</code></td><td class="ne">इ ि</td><td><code>ii</code> / <code>ee</code> / <code>I</code></td><td class="ne">ई ी</td></tr>
+          <tr><td><code>u</code></td><td class="ne">उ ु</td><td><code>uu</code> / <code>oo</code> / <code>U</code></td><td class="ne">ऊ ू</td></tr>
+          <tr><td><code>e</code> / <code>ai</code></td><td class="ne">ए ै</td><td><code>o</code> / <code>au</code></td><td class="ne">ओ ौ</td></tr>
+          <tr><td><code>Ri</code></td><td class="ne">ऋ ृ</td><td><code>M</code> / <code>~</code> / <code>H</code></td><td class="ne">ं ँ ः</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <caption class="sr-only">Consonants and special keys</caption>
+        <thead><tr><th scope="col">Type</th><th scope="col">Gets</th><th scope="col">Type</th><th scope="col">Gets</th></tr></thead>
+        <tbody>
+          <tr><td><code>T Th D Dh N</code></td><td class="ne">ट ठ ड ढ ण</td><td><code>t th d dh n</code></td><td class="ne">त थ द ध न</td></tr>
+          <tr><td><code>sh</code> / <code>Sh</code></td><td class="ne">श ष</td><td><code>x</code> / <code>ksh</code></td><td class="ne">क्ष</td></tr>
+          <tr><td><code>gy</code> / <code>tr</code></td><td class="ne">ज्ञ त्र</td><td><code>chh</code> / <code>Ng</code></td><td class="ne">छ ङ</td></tr>
+          <tr><td><code>.</code></td><td class="ne">।</td><td><code>\</code></td><td>forces a halant <span class="ne">्</span></td></tr>
+          <tr><td><code>{English}</code></td><td colspan="3">text in braces is kept as typed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>Built by <a href="https://github.com/sprasapradip">Pradip Subedi</a>. Open source on <a href="https://github.com/sprasapradip/unicode-nepali">GitHub</a>. Embed it on your own site with one script tag.</p>
+  </div>
+</footer>
+
+<script src="src/nepali-converter.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>

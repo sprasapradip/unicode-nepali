@@ -1,0 +1,17 @@
+{
+  "name": "nepali-unicode-converter",
+  "version": "2.0.0",
+  "description": "Zero-dependency Nepali text converter: Preeti <-> Unicode, Romanized -> Unicode, Unicode -> Roman/slug, Nepali digits and lakh/crore formatting.",
+  "main": "src/nepali-converter.js",
+  "bin": { "nepali-convert": "bin/nepali-convert.js" },
+  "files": ["src/", "embed/nepali-converter-element.js", "bin/"],
+  "scripts": {
+    "test": "node --test",
+    "test:php": "php tests/php/run.php"
+  },
+  "keywords": ["nepali", "preeti", "unicode", "devanagari", "transliteration", "converter", "nepal"],
+  "author": "Pradip Subedi (https://github.com/sprasapradip)",
+  "homepage": "https://github.com/sprasapradip/unicode-nepali",
+  "repository": { "type": "git", "url": "https://github.com/sprasapradip/unicode-nepali.git" },
+  "engines": { "node": ">=18" }
+}
