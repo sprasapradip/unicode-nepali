@@ -60,11 +60,13 @@ Open `index.html`, or host the folder on any static host (GitHub Pages, Netlify,
 ### Embed on any website
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/sprasapradip/unicode-nepali@v2.0.0/src/nepali-converter.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/sprasapradip/unicode-nepali@v2.0.0/embed/nepali-converter-element.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sprasapradip/unicode-nepali@main/src/nepali-converter.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sprasapradip/unicode-nepali@main/embed/nepali-converter-element.js"></script>
 
 <nepali-converter mode="preeti-to-unicode"></nepali-converter>
 ```
+
+For production, pin a release instead of `@main`, for example `@v2.0.0`.
 
 | Attribute | Values | Default |
 |---|---|---|
